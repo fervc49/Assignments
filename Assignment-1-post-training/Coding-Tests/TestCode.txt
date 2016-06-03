@@ -1,0 +1,83 @@
+
+//MainActivity
+package com.example.codetest;
+
+import ...
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText text1;
+    EditText text2;
+    Button buttonCheckText;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        try {
+            text1 = (EditText) findViewById(R.id.editTxt1);
+            text2 = (EditText) findViewById(R.id.editTxt2);
+            buttonCheckText = (Button) findViewById(R.id.btnCheckText);
+            buttonCheckText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //replaceAll(" ","") take out spaces so there are no mistake between space and empty edittext
+                    if (text1.getText().toString().replaceAll(" ","").equals("") && text2.getText().toString().replaceAll(" ","").equals("")) {
+                        Toast.makeText(MainActivity.this, "Both edit text are empty", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }
+        catch(Exception e)
+        {
+            Toast.makeText(MainActivity.this, "Exception found", Toast.LENGTH_LONG).show();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+//Layout
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.fernando.androidpay.codetest.MainActivity">
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTxt1"
+        android:text=""
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTxt2"
+        android:text=""
+        android:layout_below="@+id/editTxt1"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check Text"
+        android:id="@+id/btnCheckText"
+        android:layout_below="@+id/editTxt2" />
+
+</RelativeLayout>
